@@ -1,69 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>June Trip From Krakow</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
-    header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem 1rem; text-align: center; }
-    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.1rem; opacity: 0.9; }
-    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
-    .proposal { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
-    .proposal:hover { transform: translateY(-2px); }
-    .proposal h2 { color: #667eea; margin-bottom: 0.5rem; }
-    .proposal .meta { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; }
-    .proposal .meta span { background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 4px; }
-    .proposal p { color: #555; }
-    .tag { display: inline-block; background: #e8f4fd; color: #1a73e8; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.8rem; margin-right: 0.3rem; }
-    footer { text-align: center; padding: 2rem; color: #888; font-size: 0.9rem; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Trip from Kraków – June 18–21, 2026</title>
+<style>
+  :root {
+    --purple: #4A235A;
+    --accent: #C0392B;
+    --teal: #0E6655;
+    --gray: #2C3E50;
+    --light-purple: #F5EEF8;
+    --light-accent: #FADBD8;
+    --light-teal: #E8F8F5;
+    --dark-bg: #1B2631;
+    --gold: #B7950B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--gray);
+    background: #f5f5f5;
+    line-height: 1.5;
+  }
+  .cover {
+    background: var(--dark-bg);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cover h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .cover h2 {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 400;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+  .cover .date {
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  .cover .intro {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  .cover .note {
+    margin-top: 24px;
+    padding: 12px 24px;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    color: #f5c6b8;
+    font-weight: 600;
+    font-size: 1rem;
+    max-width: 500px;
+  }
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--dark-bg);
+    padding: 8px 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-bar a {
+    display: inline-block;
+    color: #ddd;
+    text-decoration: none;
+    padding: 6px 14px;
+    margin: 2px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .nav-bar a:hover {
+    background: var(--purple);
+    color: #fff;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .dest {
+    background: #fff;
+    border-radius: 12px;
+    margin: 24px 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .dest img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .dest-body {
+    padding: 24px;
+  }
+  .dest h3 {
+    font-size: 1.5rem;
+    color: var(--purple);
+    margin-bottom: 4px;
+  }
+  .drive-info {
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .why-box {
+    background: var(--light-purple);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+  .plan-table th {
+    background: var(--purple);
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+  .plan-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+  }
+  .plan-table tr:nth-child(even) td {
+    background: var(--light-teal);
+  }
+  .plan-table .day-label {
+    font-weight: 700;
+    color: var(--teal);
+    white-space: nowrap;
+    width: 110px;
+  }
+  .sleep-box {
+    background: var(--light-accent);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+  .toc-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .toc-section h3 {
+    color: var(--purple);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  .toc-list {
+    list-style: none;
+  }
+  .toc-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .toc-list li:last-child { border: none; }
+  .toc-list a {
+    text-decoration: none;
+    color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toc-list a:hover { color: var(--purple); }
+  .toc-list .drive-tag {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-style: italic;
+  }
+  footer {
+    text-align: center;
+    padding: 32px 16px;
+    color: #888;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 600px) {
+    .dest-body { padding: 16px; }
+    .plan-table { font-size: 0.8rem; }
+    .plan-table .day-label { width: 80px; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>June Trip From Krakow</h1>
-    <p>Discover trip proposals starting from Krakow this June</p>
-  </header>
-  <div class="container">
-    <div class="proposal">
-      <h2>Zakopane & Tatra Mountains</h2>
-      <div class="meta"><span>June 1-3</span><span>~3 days</span><span>~150 km</span></div>
-      <p>Explore the Tatra National Park, hike to Morskie Oko, and enjoy the Zakopane highland culture.</p>
-      <div><span class="tag">Nature</span><span class="tag">Hiking</span></div>
-    </div>
-    <div class="proposal">
-      <h2>Wroclaw City Break</h2>
-      <div class="meta"><span>June 5-7</span><span>~3 days</span><span>~270 km</span></div>
-      <p>Visit the beautiful Market Square, Ostrow Tumski, and see the famous Wroclaw dwarfs.</p>
-      <div><span class="tag">City</span><span class="tag">Culture</span></div>
-    </div>
-    <div class="proposal">
-      <h2>Wieliczka Salt Mine & Auschwitz</h2>
-      <div class="meta"><span>June 10</span><span>~1 day</span><span>~70 km</span></div>
-      <p>Combine a visit to the UNESCO-listed Wieliczka Salt Mine with the Auschwitz-Birkenau Memorial.</p>
-      <div><span class="tag">History</span><span class="tag">UNESCO</span></div>
-    </div>
-    <div class="proposal">
-      <h2>Gdansk & Baltic Coast</h2>
-      <div class="meta"><span>June 12-16</span><span>~5 days</span><span>~600 km</span></div>
-      <p>Explore Gdansk Old Town, visit the beaches of Sopot, and see the Westerplatte monument.</p>
-      <div><span class="tag">Beach</span><span class="tag">History</span></div>
-    </div>
-    <div class="proposal">
-      <h2>Prague, Czech Republic</h2>
-      <div class="meta"><span>June 15-18</span><span>~4 days</span><span>~530 km</span></div>
-      <p>Cross the border to Prague: Charles Bridge, Prague Castle, and Czech beer.</p>
-      <div><span class="tag">International</span><span class="tag">City</span></div>
-    </div>
-    <div class="proposal">
-      <h2>Bieszczady Mountains</h2>
-      <div class="meta"><span>June 20-24</span><span>~5 days</span><span>~230 km</span></div>
-      <p>Peaceful hiking in the remote Bieszczady range with stunning views and wildlife.</p>
-      <div><span class="tag">Nature</span><span class="tag">Hiking</span><span class="tag">Remote</span></div>
-    </div>
+
+<div class="cover" id="top">
+  <h1>ROAD TRIP PROPOSALS</h1>
+  <h2>from <span style="color:#C0392B">Kraków</span> for a Group of 4</h2>
+  <div class="date">June 18 — June 21, 2026</div>
+  <div class="intro">
+    Ten hand-picked destinations — from mountain adventures and lake retreats
+    to city breaks and hidden gems — all within 4–5 hours from Kraków.
+    Each proposal includes a day-by-day plan tailored for Thu 18 – Sun 21 June.
+    Perfect for a couple and two friends who love exploring.
   </div>
-  <footer>Proposals for June trips starting from Krakow, Poland</footer>
+  <div class="note">You need to be back in Kraków by ~10 AM on Sunday 21 June. Departure times are adjusted accordingly.</div>
+  <div style="margin-top:40px; opacity:0.7;">Let the adventure begin!</div>
+</div>
+
+<div class="nav-bar" id="nav">
+  <a href="#toc">Contents</a>
+  <a href="#dest1">1. Solina & Bieszczady</a>
+  <a href="#dest2">2. Szczawnica & Pieniny</a>
+  <a href="#dest3">3. Dedinky & Slovak Paradise</a>
+  <a href="#dest4">4. Bielsko-Biała & Beskid Śląski</a>
+  <a href="#dest5">5. Karpacz & Góry Stołowe</a>
+  <a href="#dest6">6. Ostrava</a>
+  <a href="#dest7">7. Tokaj</a>
+  <a href="#dest8">8. Vienna</a>
+  <a href="#dest9">9. Low Tatras</a>
+  <a href="#dest10">10. České Budějovice</a>
+</div>
+
+<div class="container">
+
+<div class="toc-section" id="toc">
+  <h3>Contents</h3>
+  <ul class="toc-list">
+    <li><a href="#dest1"><span>1. Solina &amp; Bieszczady Mountains</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest2"><span>2. Szczawnica &amp; Pieniny Mountains</span> <span class="drive-tag">~1.5 h</span></a></li>
+    <li><a href="#dest3"><span>3. Dedinky &amp; Slovak Paradise</span> <span class="drive-tag">~2 h</span></a></li>
+    <li><a href="#dest4"><span>4. Bielsko-Biała &amp; Beskid Śląski</span> <span class="drive-tag">~1.5 h</span></a></li>
+    <li><a href="#dest5"><span>5. Karpacz &amp; Góry Stołowe</span> <span class="drive-tag">~4 h</span></a></li>
+    <li><a href="#dest6"><span>6. Ostrava (Czech Republic)</span> <span class="drive-tag">~2.5 h</span></a></li>
+    <li><a href="#dest7"><span>7. Tokaj Wine Region (Hungary)</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest8"><span>8. Vienna (Austria)</span> <span class="drive-tag">~4.5 h</span></a></li>
+    <li><a href="#dest9"><span>9. Low Tatras National Park (Slovakia)</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest10"><span>10. České Budějovice (Czech Republic)</span> <span class="drive-tag">~4.5 h</span></a></li>
+  </ul>
+</div>
+
+<!-- Destination 1 -->
+<div class="dest" id="dest1">
+  <img src="photos/1.jpg" alt="Solina Lake" loading="lazy">
+  <div class="dest-body">
+    <h3>1. Solina &amp; Bieszczady Mountains</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 180 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> Poland's most beautiful mountain lake surrounded by wild Bieszczady hills. Perfect for a group: boat trips, hiking, campfires, and stunning sunsets over the lake.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive from Kraków → Solina (check-in). Afternoon walk on the Solina Dam, rent a boat or kayak. Dinner with lake view.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Full-day hike in Bieszczady: Tarnica (the highest peak) or Połonina Wetlińska (easier, stunning grassy ridges). Pack picnic.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Horse-drawn cart ride in the mountains or visit the History of Bieszczady museum. Evening bonfire with oscypek and grilled food.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Solina at 6:00 AM → arrive Kraków ~9:30 AM (3.5h drive). No time for morning activities.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Pensjonat pod Gwiazdami or Domki nad Soliną (self-catering cottages for 4). Book early!</div>
+  </div>
+</div>
+
+<!-- Destination 2 -->
+<div class="dest" id="dest2">
+  <img src="photos/2.jpg" alt="Dunajec River Gorge" loading="lazy">
+  <div class="dest-body">
+    <h3>2. Szczawnica &amp; Pieniny Mountains</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~1.5 h | 100 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> The closest mountain escape from Kraków. Famous for the Dunajec River Gorge raft trip — a must-do! Charming spa town with great food.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Szczawnica, check in. Evening walk on the Zdrojowy Promenade, dinner at a local karczma.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Dunajec River Gorge rafting (raft trip from Sromowce to Szczawnica, ~2 h). Afternoon hike to Trzy Korony viewpoint.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Mountain biking in the Pieniny National Park or hike to Sokolicy. Visit the Czorsztyn Castle ruins.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Morning walk on the promenade (7:00–7:30). Depart Szczawnica at 8:00 AM → arrive Kraków ~9:30 AM.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Modry Dywanik or Willa Poezja — both in town center.</div>
+  </div>
+</div>
+
+<!-- Destination 3 -->
+<div class="dest" id="dest3">
+  <img src="photos/3.jpg" alt="Slovak Paradise - Suchá Belá" loading="lazy">
+  <div class="dest-body">
+    <h3>3. Dedinky &amp; Slovak Paradise</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~2 h | 130 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> A hidden Slovak gem. Dedinky village sits by a small lake at the foot of rocky canyons. Ladders, waterfalls, and gorges make Slovak Paradise a thrilling adventure.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Dedinky, check-in. Walk around Palcmanská Maša lake, rent paddleboat. Dinner at Koliba u Frice.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Hike Suchá Belá gorge — the most famous trail with ladders and cascading waterfalls. ~4 h. Photo paradise!</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Visit Dobšinská Ice Cave (guided tour). Afternoon: Tomášovský výhľad viewpoint or relax at the lake.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Dedinky at 7:30 AM → arrive Kraków ~9:30 AM (2h drive). Have breakfast before leaving.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Dedinkár or Penzión Kamienka — cozy, family-run.</div>
+  </div>
+</div>
+
+<!-- Destination 4 -->
+<div class="dest" id="dest4">
+  <img src="photos/4.jpg" alt="Bielsko-Biała Old Town" loading="lazy">
+  <div class="dest-body">
+    <h3>4. Bielsko-Biała &amp; Beskid Śląski</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~1.5 h | 80 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> A beautiful old town with Italian-style square and easy access to Szyndzielnia and Skrzyczne peaks. Cable cars, hiking trails, and excellent Silesian cuisine.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Bielsko-Biała, check in. Walk the Old Town and visit the Bielsko Castle. Dinner at Staropolanka restaurant.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Cable car up Szyndzielnia, hike the ridge to Klimczok. Panoramic views of the Tatras on a clear day.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Visit Żywiec Brewery (tour + tasting) or hike Skrzyczne — the highest peak in Beskid Śląski. Evening in the city.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Bielsko at 8:00 AM → arrive Kraków ~9:30 AM (1.5h drive). Quick morning coffee before leaving.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Szyndzielnia (on the mountain) or Hotel President in city center.</div>
+  </div>
+</div>
+
+<!-- Destination 5 -->
+<div class="dest" id="dest5">
+  <img src="photos/5.jpg" alt="Karpacz - Wang Church" loading="lazy">
+  <div class="dest-body">
+    <h3>5. Karpacz &amp; Góry Stołowe</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4 h | 320 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> A longer drive but rewards with the otherworldly rock formations of Góry Stołowe and the charm of Karpacz. Śnieżka peak and the Wang Church are highlights.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Early start from Kraków → Karpacz (check-in). Afternoon: visit Wang Church (historic stave church) and walk around town.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Hike to Śnieżka (the highest peak of Karkonosze). Cable car from Karpacz, then ridge hike. Sunset on the mountain.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Drive to Góry Stołowe (50 min). Hike Błędne Skały (labyrinth of rocks) and Szczeliniec Wielki. Unreal landscapes.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Early departure at 5:30 AM → arrive Kraków ~9:30 AM (4h drive). Pack the car before bed Saturday night.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Slonek &amp; Spa or Willa Anna — near the city center.</div>
+  </div>
+</div>
+
+<!-- Destination 6 -->
+<div class="dest" id="dest6">
+  <img src="photos/6.jpg" alt="Ostrava - Dolní Vítkovice" loading="lazy">
+  <div class="dest-body">
+    <h3>6. Ostrava (Czech Republic)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~2.5 h | 180 km</div>
+    <div class="why-box"><strong>Why this destination?</strong> An industrial city turned hip destination. Metallurgy museums, great food, technical attractions (Landek Park, Bolt Tower). Going abroad without going far.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Ostrava, check-in. Evening in the revitalized Dolní Vítkovice complex — visit Bolt Tower for sunset.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Landek Park Mining Museum (ride an underground train!). Afternoon: Ostrava Zoo or the Water World Sareza.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Day trip to Štramberk (beautiful fairy-tale town with a Trúba tower) or Hukvaldy Castle ruins. Czech beer tasting.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Ostrava at 7:00 AM → arrive Kraków ~9:30 AM (2.5h drive). Breakfast on the road.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Meritum or Hotel Imperial — modern, well-located.</div>
+  </div>
+</div>
+
+<!-- Destination 7 -->
+<div class="dest" id="dest7">
+  <img src="photos/7.jpg" alt="Tokaj Wine Region" loading="lazy">
+  <div class="dest-body">
+    <h3>7. Tokaj Wine Region (Hungary)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 200 km via Košice</div>
+    <div class="why-box"><strong>Why this destination?</strong> A UNESCO World Heritage wine region with historic cellars carved into volcanic hills. Perfect for a group: wine tastings, castle ruins, and incredible Hungarian cuisine.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive Kraków → Tokaj via Rzeszów and Dukla Pass. Check into a wine cellar guesthouse. Evening tasting at a family winery.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Wine tour: visit 2–3 legendary wineries (Disznókő, Oremus, or Hétszőlő). Cellar tour &amp; tasting. Lunch at Tokaj's main square.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Day trip to Sárospatak Castle (Rákóczi fortress) or hike the Zemplén Hills. Evening: dinner at a rustic csárda with live music.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Tokaj at 6:00 AM → arrive Kraków ~9:30 AM (3.5h drive via Košice). Buy wine on Saturday instead.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Tokaj or a wine cellar guesthouse (Bordog és Kaland) — authentic, charming.</div>
+  </div>
+</div>
+
+<!-- Destination 8 -->
+<div class="dest" id="dest8">
+  <img src="photos/8.jpg" alt="Vienna - Schönbrunn Palace" loading="lazy">
+  <div class="dest-body">
+    <h3>8. Vienna (Austria)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h | 330 km via Brno</div>
+    <div class="why-box"><strong>Why this destination?</strong> Imperial grandeur, world-class museums, coffeehouse culture, and a buzzing summer scene. The ultimate classy city break — and the drive is worth every kilometer.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Early start from Kraków → Vienna. Check in. Evening: walk the Ringstraße, see Stephansdom, dinner at a Heurigen wine tavern.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Schönbrunn Palace tour + gardens. Afternoon: Hofburg Imperial Palace &amp; Sisi Museum. Evening: Prater park &amp; Riesenrad.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Choose: Kunsthistorisches Museum or Belvedere Gallery (Klimt). Alternatively: day trip to the Wachau Valley (Melk Abbey, Dürnstein).</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Very early departure at 5:00 AM → arrive Kraków ~9:30 AM (4.5h drive). Pack everything on Saturday night.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel NH Wien (good value) or Pension Liechtenstein (central) — book ahead for June.</div>
+  </div>
+</div>
+
+<!-- Destination 9 -->
+<div class="dest" id="dest9">
+  <img src="photos/9.jpg" alt="Low Tatras - Ďumbier" loading="lazy">
+  <div class="dest-body">
+    <h3>9. Low Tatras National Park (Slovakia)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 200 km via Poprad</div>
+    <div class="why-box"><strong>Why this destination?</strong> Slovakia's largest national park! Wild, rugged, and less crowded than the High Tatras. Hiking to Ďumbier peak, thermal pools, ice caves, and the legendary Chata generála lodge.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Jasná or Liptovský Mikuláš. Check in. Evening walk in the town, dinner by the Váh River.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Hike to Ďumbier (1,843 m) — the highest peak of the Low Tatras. Stunning ridge-line views. ~6 h round trip. Pack picnic.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Explore Demänovská Valley: visit the Demänovská Ice Cave and Freedom Cave (guided tours). Afternoon: thermal pools in Liptovský Ján.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Jasná at 6:00 AM → arrive Kraków ~9:30 AM (3.5h drive). Do the chairlift on Saturday instead.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Grand Jasná or Penzión Bystrina — right at the mountain trailheads.</div>
+  </div>
+</div>
+
+<!-- Destination 10 -->
+<div class="dest" id="dest10">
+  <img src="photos/10.jpg" alt="Hluboká Castle near České Budějovice" loading="lazy">
+  <div class="dest-body">
+    <h3>10. České Budějovice (Czech Republic)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h | 390 km via Brno</div>
+    <div class="why-box"><strong>Why this destination?</strong> The heart of South Bohemia, home of Budweiser Budvar beer, a stunning main square (the largest in Czechia), and a gateway to Český Krumlov and Hluboká Castle.</div>
+    <table class="plan-table">
+      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
+      <tr><td class="day-label">Thu 18 Jun</td><td>Drive from Kraków → České Budějovice. Check in. Evening brewery tour + tasting at Budvar. Dinner at Masné Krámy restaurant.</td></tr>
+      <tr><td class="day-label">Fri 19 Jun</td><td>Day trip to Český Krumlov (UNESCO, 30 min drive). Castle tour, Vltava river rafting, lunch in the Old Town. Back for evening beer.</td></tr>
+      <tr><td class="day-label">Sat 20 Jun</td><td>Visit Hluboká Castle (a Czech fairy-tale castle, 10 min away). Afternoon: Třeboň fish ponds (cycling) or hike in Novohradské Mountains.</td></tr>
+      <tr><td class="day-label">Sun 21 Jun</td><td>Very early departure at 5:00 AM → arrive Kraków ~9:30 AM (4.5h drive via Brno). Quick breakfast before leaving.</td></tr>
+    </table>
+    <div class="sleep-box">🛌 Where to sleep: Hotel Zvon (on the main square) or Penzion U Tří sedláků — central and affordable.</div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p>Road Trip Proposals • Kraków • June 18–21, 2026</p>
+</footer>
+
 </body>
 </html>
