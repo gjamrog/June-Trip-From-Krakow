@@ -20,14 +20,12 @@
     --ink-light:#6B6560;
     --red:#C73A3A;
     --gold:#C4943A;
-    --olive:#7A9A6A;
     --deep:#1A2828;
     --sand:#E8DDD0;
     --line:#DCD4C8;
     --shadow:0 4px 24px rgba(0,0,0,0.06);
     --radius:16px;
   }
-
   body{
     font-family:'DM Sans',sans-serif;
     color:var(--ink);
@@ -36,46 +34,34 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ───── COVER ───── */
+  /* ─── COVER ─── */
   .cover{
     min-height:100vh;
     background:var(--deep);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display:flex;flex-direction:column;
+    justify-content:center;align-items:center;
     text-align:center;
     padding:60px 24px 40px;
-    position:relative;
-    overflow:hidden;
-    isolation:isolate;
+    position:relative;overflow:hidden;isolation:isolate;
   }
   .cover::before{
-    content:'';
-    position:absolute;inset:0;
-    background:radial-gradient(ellipse 80% 50% at 50% 20%, rgba(196,148,58,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 30% 70%, rgba(122,154,106,0.06) 0%, transparent 60%);
-    pointer-events:none;
-    z-index:0;
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse 80% 50% at 50% 20%,rgba(196,148,58,0.08) 0%,transparent 70%),
+               radial-gradient(ellipse 60% 40% at 30% 70%,rgba(122,154,106,0.06) 0%,transparent 60%);
+    pointer-events:none;z-index:0;
   }
   .cover::after{
-    content:'';
-    position:absolute;inset:0;
+    content:'';position:absolute;inset:0;
     background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events:none;z-index:0;opacity:0.4;
   }
   .cover>*{position:relative;z-index:1}
-
-  .compass{
-    width:120px;height:120px;margin-bottom:36px;opacity:0.6;
-    animation:fadeSlideUp 1.2s ease-out forwards;
-  }
+  .compass{width:120px;height:120px;margin-bottom:36px;opacity:0.6;animation:fadeSlideUp 1.2s ease-out forwards}
   .compass circle{fill:none;stroke:var(--gold);stroke-width:1;opacity:0.3}
   .compass .dial{fill:none;stroke:var(--gold);stroke-width:0.5;opacity:0.15}
   .compass .needle-n{fill:var(--red);opacity:0.7}
   .compass .needle-s{fill:var(--gold);opacity:0.4}
   .compass .center{fill:var(--gold);opacity:0.5}
-
   .cover h1{
     font-family:'Playfair Display',serif;
     font-weight:900;
@@ -87,8 +73,7 @@
     animation:fadeSlideUp 0.8s ease-out 0.2s both;
   }
   .cover h1 em{
-    font-style:italic;
-    font-weight:400;
+    font-style:italic;font-weight:400;
     color:var(--gold);
     display:block;
     font-size:0.45em;
@@ -110,16 +95,12 @@
     color:rgba(255,255,255,0.35);
     letter-spacing:0.2em;
     text-transform:uppercase;
-    font-weight:400;
     animation:fadeSlideUp 0.8s ease-out 0.5s both;
   }
   .cover .intro{
-    max-width:560px;
-    margin-top:40px;
+    max-width:560px;margin-top:40px;
     color:rgba(255,255,255,0.55);
-    font-size:0.95rem;
-    line-height:1.7;
-    font-weight:300;
+    font-size:0.95rem;font-weight:300;
     animation:fadeSlideUp 0.8s ease-out 0.6s both;
   }
   .cover .note{
@@ -128,8 +109,7 @@
     border:1px solid rgba(196,148,58,0.25);
     border-radius:8px;
     color:var(--gold);
-    font-size:0.85rem;
-    font-weight:500;
+    font-size:0.85rem;font-weight:500;
     max-width:520px;
     background:rgba(196,148,58,0.06);
     backdrop-filter:blur(4px);
@@ -138,24 +118,16 @@
   .scroll-hint{
     margin-top:60px;
     color:rgba(255,255,255,0.3);
-    font-size:0.7rem;
-    letter-spacing:0.2em;
+    font-size:0.7rem;letter-spacing:0.2em;
     text-transform:uppercase;
     animation:fadeSlideUp 0.8s ease-out 0.8s both,bounce 2s ease-in-out 1s infinite;
     display:flex;flex-direction:column;align-items:center;gap:8px;
   }
   .scroll-hint span{display:block;width:1px;height:24px;background:rgba(255,255,255,0.2)}
+  @keyframes fadeSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 
-  @keyframes fadeSlideUp{
-    from{opacity:0;transform:translateY(24px)}
-    to{opacity:1;transform:translateY(0)}
-  }
-  @keyframes bounce{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(8px)}
-  }
-
-  /* ───── NAV ───── */
+  /* ─── NAV ─── */
   .nav{
     position:sticky;top:0;z-index:100;
     background:rgba(245,240,235,0.88);
@@ -172,22 +144,18 @@
     display:inline-block;
     padding:5px 14px;
     border-radius:20px;
-    font-size:0.78rem;
-    font-weight:500;
+    font-size:0.78rem;font-weight:500;
     color:var(--ink-light);
     text-decoration:none;
     transition:all 0.2s;
     flex-shrink:0;
   }
-  .nav a:hover,.nav a.active{
-    background:var(--red);
-    color:#fff;
-  }
+  .nav a:hover,.nav a.active{background:var(--red);color:#fff}
 
-  /* ───── CONTAINER ───── */
-  .container{max-width:1040px;margin:0 auto;padding:0 20px}
+  /* ─── CONTAINER ─── */
+  .container{max-width:1080px;margin:0 auto;padding:0 20px}
 
-  /* ───── ROUTE MAP ───── */
+  /* ─── ROUTE MAP ─── */
   .route-map{
     background:var(--card);
     border-radius:var(--radius);
@@ -197,11 +165,9 @@
   }
   .route-map h3{
     font-family:'Playfair Display',serif;
-    font-size:1.4rem;
-    font-weight:700;
+    font-size:1.4rem;font-weight:700;
     color:var(--deep);
     margin-bottom:24px;
-    letter-spacing:-0.01em;
   }
   .route-line-wrap{
     position:relative;
@@ -211,189 +177,113 @@
     scrollbar-width:none;
   }
   .route-line-wrap::-webkit-scrollbar{display:none}
-  .route-line{
-    display:flex;align-items:flex-start;
-    min-width:max-content;
-    position:relative;
-    padding-top:16px;
-  }
+  .route-line{display:flex;align-items:flex-start;min-width:max-content;position:relative;padding-top:16px}
   .route-line::before{
-    content:'';
-    position:absolute;top:20px;left:28px;right:28px;
+    content:'';position:absolute;top:20px;left:28px;right:28px;
     height:2px;
-    background:linear-gradient(to right, var(--red), var(--gold), var(--olive));
+    background:linear-gradient(90deg,var(--red),var(--gold),var(--olive));
     border-radius:1px;
   }
-  .route-stop{
-    display:flex;flex-direction:column;align-items:center;
-    min-width:80px;max-width:80px;
-    position:relative;
-    cursor:default;
-    transition:transform 0.2s;
-  }
+  .route-stop{display:flex;flex-direction:column;align-items:center;min-width:80px;max-width:80px;position:relative;cursor:default;transition:transform 0.2s}
   .route-stop:hover{transform:translateY(-3px)}
   .route-stop .dot{
     width:14px;height:14px;border-radius:50%;
     background:var(--red);
     border:2px solid var(--card);
     box-shadow:0 0 0 2px var(--red);
-    margin-bottom:6px;
-    position:relative;z-index:1;
+    margin-bottom:6px;position:relative;z-index:1;
   }
-  .route-stop:first-child .dot,
-  .route-stop:last-child .dot{
+  .route-stop:first-child .dot,.route-stop:last-child .dot{
     width:18px;height:18px;
     background:var(--deep);
     box-shadow:0 0 0 2px var(--gold);
   }
   .route-stop .label{
-    font-size:0.68rem;
-    font-weight:500;
-    color:var(--ink);
-    text-align:center;
-    line-height:1.2;
-    max-width:72px;
+    font-size:0.68rem;font-weight:500;
+    color:var(--ink);text-align:center;
+    line-height:1.2;max-width:72px;
     text-decoration:none;
-    color:var(--ink);
   }
-  .route-stop .time{
-    font-size:0.6rem;
-    color:var(--ink-light);
-    margin-top:2px;
-    font-weight:400;
-  }
+  .route-stop .time{font-size:0.6rem;color:var(--ink-light);margin-top:2px}
   .route-stop:first-child .label{font-weight:600;color:var(--deep)}
+  :root{--olive:#7A9A6A}
 
-  /* ───── DESTINATION CARD ───── */
-  .dest{
-    margin:52px 0;
-    opacity:0;
-    transform:translateY(30px);
-    transition:opacity 0.7s ease,transform 0.7s ease;
-  }
+  /* ─── DESTINATION ─── */
+  .dest{margin:52px 0;opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
   .dest.visible{opacity:1;transform:translateY(0)}
-
-  .dest-inner{
-    background:var(--card);
-    border-radius:var(--radius);
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    transition:box-shadow 0.3s;
-  }
+  .dest-inner{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow 0.3s}
   .dest-inner:hover{box-shadow:0 8px 40px rgba(0,0,0,0.1)}
 
-  .dest .img-wrap{
-    position:relative;
-    max-height:420px;
-    overflow:hidden;
-    background:var(--sand);
-  }
-  .dest .img-wrap img{
-    width:100%;height:auto;display:block;
-    transition:transform 0.6s ease;
-  }
-  .dest-inner:hover .img-wrap img{transform:scale(1.04)}
-  .dest .img-wrap::after{
-    content:'';
-    position:absolute;bottom:0;left:0;right:0;
-    height:50%;
-    background:linear-gradient(transparent,rgba(0,0,0,0.35));
-    pointer-events:none;
-  }
+  .hero-wrap{position:relative;max-height:440px;overflow:hidden;background:var(--sand)}
+  .hero-wrap img{width:100%;height:auto;display:block;transition:transform 0.6s ease}
+  .dest-inner:hover .hero-wrap img{transform:scale(1.04)}
+  .hero-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,rgba(0,0,0,0.35));pointer-events:none}
 
-  .dest-body{
-    padding:36px 40px 32px;
-    position:relative;
-  }
-
-  .dest-header{
-    display:flex;align-items:baseline;gap:10px;
-    margin-bottom:18px;
-  }
+  .dest-body{padding:36px 40px 32px;position:relative}
+  .dest-header{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
   .dest-number{
     font-family:'Playfair Display',serif;
-    font-size:3.2rem;
-    font-weight:900;
-    line-height:1;
-    color:var(--red);
-    opacity:0.25;
-    letter-spacing:-0.03em;
-    user-select:none;
+    font-size:3.2rem;font-weight:900;line-height:1;
+    color:var(--red);opacity:0.25;
+    letter-spacing:-0.03em;user-select:none;
   }
-  .dest h3{
-    font-family:'Playfair Display',serif;
-    font-size:1.7rem;
-    font-weight:700;
-    color:var(--deep);
-    letter-spacing:-0.01em;
-    line-height:1.2;
-  }
-  .drive-info{
-    font-size:0.85rem;
-    color:var(--ink-light);
-    font-weight:500;
-    margin-bottom:20px;
-    padding-bottom:20px;
-    border-bottom:1px solid var(--line);
-    display:flex;align-items:center;gap:6px;
-  }
+  .dest h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--deep);letter-spacing:-0.01em;line-height:1.2}
+  .drive-info{font-size:0.85rem;color:var(--ink-light);font-weight:500;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px}
   .drive-info strong{color:var(--red)}
 
-  .dest-grid{
-    display:grid;
-    grid-template-columns:1fr 1.3fr;
-    gap:24px;
-  }
-
   .why-box{
-    background:linear-gradient(135deg, #FAF8F5 0%, #F5F0EB 100%);
-    padding:20px 24px;
-    border-radius:12px;
+    background:linear-gradient(135deg,#FAF8F5 0%,#F5F0EB 100%);
+    padding:18px 22px;border-radius:12px;
     border:1px solid var(--line);
-    font-size:0.92rem;
-    line-height:1.7;
-    color:var(--ink);
+    font-size:0.92rem;line-height:1.7;
+    margin-bottom:24px;
   }
-  .why-box .pull-quote{
-    font-family:'Playfair Display',serif;
-    font-size:1.1rem;
-    font-weight:700;
-    color:var(--red);
-    margin-bottom:8px;
-    line-height:1.3;
-  }
+  .why-box .pull-quote{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--red);margin-bottom:6px;line-height:1.3}
 
-  .plan-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:0.85rem;
+  /* ─── DAY CARDS ─── */
+  .days-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:16px}
+  .day-card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    background:var(--card);
+    transition:box-shadow 0.2s;
   }
-  .plan-table th{
-    text-align:left;
-    font-size:0.7rem;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--ink-light);
-    padding:0 0 8px;
+  .day-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.06)}
+  .day-card .day-img{
+    width:100%;height:180px;object-fit:cover;
+    display:block;
+    transition:transform 0.4s ease;
   }
-  .plan-table td{
-    padding:10px 0;
-    border-bottom:1px solid #f0ece6;
-    vertical-align:top;
-  }
-  .plan-table tr:last-child td{border:none;padding-bottom:0}
-  .plan-table .day-label{
-    font-weight:600;
+  .day-card:hover .day-img{transform:scale(1.03)}
+  .day-card-body{padding:14px 18px 18px}
+  .day-card h4{
+    font-size:0.85rem;font-weight:700;
     color:var(--red);
-    white-space:nowrap;
-    width:95px;
-    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:8px;
+  }
+  .day-card ul{list-style:none}
+  .day-card ul li{
+    padding:4px 0;
+    font-size:0.83rem;
+    line-height:1.5;
+    color:var(--ink);
+    display:flex;gap:8px;
+  }
+  .day-card ul li::before{content:'•';color:var(--gold);font-weight:700}
+  .day-card .meal-tag{
+    display:inline-block;
+    margin-top:8px;
+    padding:3px 10px;
+    border-radius:6px;
+    background:var(--page);
+    font-size:0.73rem;
+    color:var(--ink-light);
   }
 
   .sleep-box{
-    grid-column:1 / -1;
-    margin-top:8px;
     padding:16px 20px;
     border-radius:10px;
     background:var(--page);
@@ -403,7 +293,6 @@
   }
   .sleep-box strong{color:var(--ink);font-weight:600}
 
-  /* ───── FOOTER ───── */
   footer{
     text-align:center;
     padding:48px 20px 36px;
@@ -411,12 +300,10 @@
     font-size:0.8rem;
     border-top:1px solid var(--line);
     margin-top:32px;
-    letter-spacing:0.05em;
   }
 
-  /* ───── RESPONSIVE ───── */
-  @media(max-width:760px){
-    .dest-grid{grid-template-columns:1fr;gap:16px}
+  @media(max-width:800px){
+    .days-grid{grid-template-columns:1fr}
     .dest-body{padding:24px 20px}
     .dest h3{font-size:1.35rem}
     .dest-number{font-size:2.4rem}
@@ -425,14 +312,11 @@
     .compass{width:80px;height:80px;margin-bottom:24px}
   }
   @media(max-width:480px){
-    .plan-table .day-label{width:72px;font-size:0.75rem}
-    .plan-table td{padding:8px 0;font-size:0.8rem}
     .dest-header{flex-direction:column;gap:2px}
     .dest-number{font-size:2rem;opacity:0.15}
+    .day-card .day-img{height:140px}
     .cover h1{font-size:clamp(2rem,12vw,3.2rem)}
   }
-
-  /* ───── PRINT ───── */
   @media print{
     .cover{min-height:auto;padding:40px 20px;background:#fff!important;color:var(--ink)!important}
     .cover h1{color:var(--ink)!important;-webkit-text-fill-color:var(--ink)!important}
@@ -440,7 +324,8 @@
     .nav,.scroll-hint,.compass,.route-map{display:none!important}
     .dest{opacity:1!important;transform:none!important;page-break-inside:avoid}
     .dest-inner{box-shadow:none!important;border:1px solid #ddd}
-    .dest-grid{grid-template-columns:1fr 1.3fr}
+    .days-grid{grid-template-columns:1fr 1fr}
+    .day-card{break-inside:avoid}
     body{background:#fff}
   }
 </style>
@@ -492,10 +377,7 @@
   <h3>The Route</h3>
   <div class="route-line-wrap">
     <div class="route-line">
-      <div class="route-stop">
-        <div class="dot"></div>
-        <span class="label">Kraków</span>
-      </div>
+      <div class="route-stop"><div class="dot"></div><span class="label">Kraków</span></div>
       <div class="route-stop"><div class="dot"></div><a href="#dest1" class="label">Solina</a><span class="time">3.5h</span></div>
       <div class="route-stop"><div class="dot"></div><a href="#dest2" class="label">Szczawnica</a><span class="time">1.5h</span></div>
       <div class="route-stop"><div class="dot"></div><a href="#dest3" class="label">Dedinky</a><span class="time">2h</span></div>
@@ -504,280 +386,640 @@
       <div class="route-stop"><div class="dot"></div><a href="#dest6" class="label">Tokaj</a><span class="time">3.5h</span></div>
       <div class="route-stop"><div class="dot"></div><a href="#dest7" class="label">Vienna</a><span class="time">4.5h</span></div>
       <div class="route-stop"><div class="dot"></div><a href="#dest8" class="label">Low Tatras</a><span class="time">3.5h</span></div>
-      <div class="route-stop">
-        <div class="dot"></div>
-        <a href="#dest9" class="label">Č. Budějovice</a><span class="time">4.5h</span>
-      </div>
+      <div class="route-stop"><div class="dot"></div><a href="#dest9" class="label">Č. Budějovice</a><span class="time">4.5h</span></div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 1 ─── -->
+<!-- ═══ DEST 1: Solina ═══ -->
 <div class="dest" id="dest1">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/1.jpg" alt="Solina Lake" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/1.jpg" alt="Solina Lake" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">01</span>
-        <h3>Solina &amp; Bieszczady Mountains</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">01</span><h3>Solina &amp; Bieszczady Mountains</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~3.5 h</strong> · 180 km</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Poland's wild heart.</div>
-          The Bieszczady's grassy ridges roll on for miles, dotted with sheep and wooden churches. Solina Lake — the largest in Poland — mirrors it all. Boat trips, campfire evenings, and trails that make you feel miles from anywhere.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive → Solina. Walk the dam, rent a boat or kayak on the lake. Dinner with a view.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Tarnica peak or Połonina Wetlińska ridge hike. Pack a picnic for the summit.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Horse-drawn cart through the hills or museum visit. Evening bonfire with oscypek.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 6:00 AM → Kraków ~9:30 AM.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Pensjonat pod Gwiazdami or Domki nad Soliną (cottages for 4). Book early!</div>
+      <div class="why-box">
+        <div class="pull-quote">Poland's wild heart.</div>
+        The Bieszczady's grassy ridges roll on for miles, dotted with sheep and wooden churches. Solina Lake — the largest in Poland — mirrors it all. Boat trips, campfire evenings, and trails that feel a world away.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <img class="day-img" src="photos/1a.jpg" alt="Solina Dam" loading="lazy">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~1:00 PM, scenic drive south-east through Pogórze Przemyskie</li>
+              <li>Arrive Solina ~4:30 PM, check into cottage</li>
+              <li>Walk across the Solina Dam — Poland's largest water dam, 664 m long</li>
+              <li>Rent a motorboat or kayak and explore the lake's coves and inlets</li>
+              <li>Sunset photo session on the eastern shore</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Restauracja Poloninka with lake view</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/1b.jpg" alt="Tarnica peak" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>Early start ~7:00 AM, drive to Ustrzyki Górne trailhead</li>
+              <li>Hike to Tarnica (1,346 m) — the highest Bieszczady peak, ~5 h round trip</li>
+              <li>Ridge-line views stretching across Poland, Slovakia, and Ukraine</li>
+              <li>Picnic lunch on the summit meadows</li>
+              <li>Descend via Połonina Caryńska for a different panorama</li>
+            </ul>
+            <span class="meal-tag">🥪 Pack picnic lunch · 🍽 Dinner at the cottage's outdoor grill</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/1c.jpg" alt="Połonina Wetlińska" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>Leisurely morning, then hike Połonina Wetlińska (easier ridge, ~3 h)</li>
+              <li>Visit Chatka Puchatka — the famous mountain shelter at 1,228 m</li>
+              <li>Horse-drawn cart ride through the valley meadows</li>
+              <li>Afternoon: visit the Museum of Bieszczady History in Ustrzyki Górne</li>
+              <li>Evening campfire with oscypek (smoked cheese) and grilled kiełbasa</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Chatka Puchatka · 🍽 Bonfire dinner by the lake</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>6:00 AM — Depart Solina (pack the car the night before)</li>
+              <li>Breakfast on the road or packed from the cottage</li>
+              <li>9:30 AM — Arrive Kraków, drop off car</li>
+              <li>10:00 AM — Back home as planned</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Pensjonat pod Gwiazdami or Domki nad Soliną (self-catering cottages for 4). Book early — June fills up fast!</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 2 ─── -->
+<!-- ═══ DEST 2: Szczawnica ═══ -->
 <div class="dest" id="dest2">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/2.jpg" alt="Dunajec River Gorge" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/2.jpg" alt="Dunajec River Gorge" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">02</span>
-        <h3>Szczawnica &amp; Pieniny Mountains</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">02</span><h3>Szczawnica &amp; Pieniny Mountains</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~1.5 h</strong> · 100 km</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">The closest mountain escape.</div>
-          A charming spa town at the foot of sheer limestone cliffs. The Dunajec River Gorge raft trip is a national treasure — wooden rafts, towering rock walls, and castles overhead. Trzy Korony peak awaits hikers.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Szczawnica. Evening promenade walk, dinner at a local karczma.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Dunajec River rafting (Sromowce → Szczawnica, ~2h). Afternoon hike to Trzy Korony.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>MTB in Pieniny or hike Sokolicy. Czorsztyn Castle ruins.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Morning walk 7:00. Depart 8:00 → Kraków ~9:30.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Modry Dywanik or Willa Poezja — both in town center.</div>
+      <div class="why-box">
+        <div class="pull-quote">The closest mountain escape.</div>
+        A charming spa town at the foot of sheer limestone cliffs. The Dunajec River Gorge raft trip is a national treasure — wooden rafts, towering rock walls, and castles overhead. Trzy Korony peak awaits hikers.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <img class="day-img" src="photos/2c.jpg" alt="Czorsztyn Castle" loading="lazy">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~3:00 PM, easy drive south</li>
+              <li>Arrive Szczawnica ~4:30 PM, check into hotel</li>
+              <li>Evening stroll on the Zdrojowy Promenade — beautiful park with music pavilion</li>
+              <li>Walk to the Szczawnica Pier for a view of the Dunajec valley</li>
+              <li>Try the local mineral water from the drinking fountain</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Karczma u Pienina — regional pierogi and grilled trout</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>9:00 AM — Drive to Sromowce Wyżne (15 min), board traditional wooden raft</li>
+              <li>Dunajec River Gorge rafting — 2 h float through breathtaking limestone canyon</li>
+              <li>Arrive in Szczawnica, walk back along the river trail</li>
+              <li>Afternoon: hike to Trzy Korony viewpoint (982 m) — the three-crowned peak</li>
+              <li>Panorama of the Tatras, Pieniny, and Dunajec meandering below</li>
+            </ul>
+            <span class="meal-tag">🥪 Lunch in Szczawnica's market square · 🍽 Dinner at Karczma Góral</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/2a.jpg" alt="Trzy Korony" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>Morning: hike to Sokolicy (919 m) — a needle-like limestone peak</li>
+              <li>Alternatively: rent mountain bikes and ride the Pieniny trails</li>
+              <li>Visit Czorsztyn Castle ruins on the lake — 14th century fortress</li>
+              <li>Afternoon: swim or sail on Czorsztyńskie Lake</li>
+              <li>Evening: live folk music at a local tavern</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Czorsztyn Castle inn · 🍽 Dinner with folk music at Karczma UPT</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>7:00–7:30 AM — Morning walk on the Zdrojowy Promenade</li>
+              <li>8:00 AM — Depart Szczawnica</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Fresh and relaxed, with time to unpack before brunch</li>
+            </ul>
+            <span class="meal-tag">🥐 Breakfast at the hotel before departure</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Modry Dywanik or Willa Poezja — both in the town center, walking distance to everything.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 3 ─── -->
+<!-- ═══ DEST 3: Dedinky ═══ -->
 <div class="dest" id="dest3">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/3.jpg" alt="Slovak Paradise - Suchá Belá" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/3.jpg" alt="Slovak Paradise - Suchá Belá" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">03</span>
-        <h3>Dedinky &amp; Slovak Paradise</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">03</span><h3>Dedinky &amp; Slovak Paradise</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~2 h</strong> · 130 km</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Ladders, caves, and hidden lakes.</div>
-          Slovak Paradise is not a metaphor — it's a national park of canyon gorges connected by wooden ladders and footbridges over waterfalls. Dedinky is a sleepy lakeside village at its doorstep.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Dedinky. Walk Palcmanská Maša lake, paddleboat. Dinner at Koliba u Frice.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Suchá Belá gorge hike — ladders, cascades, photo paradise. ~4h.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Dobšinská Ice Cave tour. Afternoon: Tomášovský výhľad viewpoint or lake relax.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 7:30 → Kraków ~9:30. Breakfast before leaving.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Dedinkár or Penzión Kamienka — cozy, family-run.</div>
+      <div class="why-box">
+        <div class="pull-quote">Ladders, caves, and hidden lakes.</div>
+        Slovak Paradise is not a metaphor — it's a national park of canyon gorges connected by wooden ladders and footbridges over waterfalls. Dedinky is a sleepy lakeside village at its doorstep.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <img class="day-img" src="photos/3b.jpg" alt="Palcmanská Maša lake" loading="lazy">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~2:00 PM, cross the border at Lysá nad Dunajcom</li>
+              <li>Arrive Dedinky ~4:00 PM, check into guesthouse</li>
+              <li>Walk around Palcmanská Maša lake — the "Slovak Sea"</li>
+              <li>Rent a paddleboat or stand-up paddleboard for the afternoon</li>
+              <li>Evening: stroll along the lake promenade, watch the sunset over the hills</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Koliba u Frice — hearty Slovak halušky and bryndzové pirohy</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>7:30 AM — Drive to Suchá Belá trailhead (10 min)</li>
+              <li>Hike the most famous Slovak Paradise trail — a series of wooden ladders and footbridges</li>
+              <li>Navigate through narrow waterfalls and canyon gorges</li>
+              <li>~4 hours of pure adventure photography heaven</li>
+              <li>Swim in the natural pools at the end of the trail</li>
+            </ul>
+            <span class="meal-tag">🥪 Pack picnic for the trail · 🍽 Dinner at Penzión Kamienka's terrace</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/3a.jpg" alt="Dobšinská Ice Cave" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>9:00 AM — Guided tour of Dobšinská Ice Cave (UNESCO, dress warmly!)</li>
+              <li>Marvel at the 26 m-high ice walls and frozen waterfall</li>
+              <li>Afternoon: short hike to Tomášovský výhľad viewpoint</li>
+              <li>Panorama of the Slovak Paradise ridges and the lake below</li>
+              <li>Relax by the lake with drinks from the beach bar</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at the cave restaurant · 🍽 Grilled specialities at Hotel Dedinkár</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>7:30 AM — Depart Dedinky</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Grab breakfast before heading home — the lake views will stay with you</li>
+            </ul>
+            <span class="meal-tag">🥐 Breakfast at the guesthouse before departure</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Dedinkár or Penzión Kamienka — cozy, family-run guesthouses right by the lake.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 4 ─── -->
+<!-- ═══ DEST 4: Karpacz ═══ -->
 <div class="dest" id="dest4">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/5.jpg" alt="Karpacz - Wang Church" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/5.jpg" alt="Karpacz - Wang Church" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">04</span>
-        <h3>Karpacz &amp; Góry Stołowe</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">04</span><h3>Karpacz &amp; Góry Stołowe</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~4 h</strong> · 320 km</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Unreal rock labyrinths.</div>
-          The Table Mountains look like another planet — flat-topped mesas split by narrow crevices. Karpacz offers the Wang stave church and cable car up Śnieżka, the highest peak in the Karkonosze range.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Early start → Karpacz. Visit Wang Church, walk the town.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Cable car + ridge hike to Śnieżka summit. Sunset on the mountain.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Góry Stołowe: Błędne Skały labyrinth + Szczeliniec Wielki. Unreal landscapes.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 5:30 → Kraków ~9:30. Pack Saturday night.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Slonek &amp; Spa or Willa Anna — near center.</div>
+      <div class="why-box">
+        <div class="pull-quote">Unreal rock labyrinths.</div>
+        The Table Mountains look like another planet — flat-topped mesas split by narrow crevices. Karpacz offers the Wang stave church and cable car up Śnieżka, the highest peak in the Karkonosze range.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~11:00 AM, drive west through Wrocław bypass</li>
+              <li>Arrive Karpacz ~3:00 PM, check into guesthouse</li>
+              <li>Visit Wang Church — a stunning 12th-century Norwegian stave church relocated here</li>
+              <li>Walk the town's main street, browse local craft shops</li>
+              <li>Evening: ride the funicular for a preview of the mountain views</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Karczma Szarotka — Silesian specialties and craft beer</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/4a.jpg" alt="Śnieżka peak" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>8:00 AM — Cable car from Karpacz up Kopa (1,377 m)</li>
+              <li>Ridge hike to Śnieżka (1,603 m) — the highest Karkonosze peak</li>
+              <li>Visit the mountaintop observatory and cross the border to Czechia</li>
+              <li>Stunning 360° views of both Polish and Czech sides</li>
+              <li>Descend via the Samotnia mountain hut for a well-earned rest</li>
+            </ul>
+            <span class="meal-tag">🥪 Picnic at the summit · 🍽 Dinner at Samotnia Mountain Hut</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/4b.jpg" alt="Błędne Skały" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>9:00 AM — Drive to Góry Stołowe National Park (50 min)</li>
+              <li>Explore Błędne Skały — a narrow labyrinth between towering sandstone walls</li>
+              <li>Continue to Szczeliniec Wielki (919 m) — the Table Mountains' highest point</li>
+              <li>Walk the scenic loop through otherworldly rock formations</li>
+              <li>Visit Kudowa-Zdrój spa town for a mineral water tasting on the way back</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Szczeliniec mountain hut · 🍽 Dinner in Karpacz at Restauracja Jamel</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>5:30 AM — Depart Karpacz (pack and load the car Saturday night)</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>A longer drive but the moon-like Table Mountains are unforgettable</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Slonek &amp; Spa or Willa Anna — both near the town center, with mountain views.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 5 ─── -->
+<!-- ═══ DEST 5: Ostrava ═══ -->
 <div class="dest" id="dest5">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/6.jpg" alt="Ostrava - Dolní Vítkovice" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/6.jpg" alt="Ostrava - Dolní Vítkovice" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">05</span>
-        <h3>Ostrava (Czech Republic)</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">05</span><h3>Ostrava (Czech Republic)</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~2.5 h</strong> · 180 km</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Industrial grit meets cool revival.</div>
-          Ostrava turned its steel mills into museums, galleries, and viewpoints. Ride an underground train at Landek Park, watch sunset from Bolt Tower, and discover fairy-tale Štramberk nearby.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive → Ostrava. Evening at Dolní Vítkovice + Bolt Tower sunset.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Landek Park mining museum (underground train). Zoo or Water World Sareza.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Day trip: Štramberk fairy-tale town or Hukvaldy Castle. Czech beer tasting.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 7:00 → Kraków ~9:30. Breakfast on the road.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Meritum or Hotel Imperial — modern, well-located.</div>
+      <div class="why-box">
+        <div class="pull-quote">Industrial grit meets cool revival.</div>
+        Ostrava turned its steel mills into museums, galleries, and viewpoints. Ride an underground train at Landek Park, watch sunset from Bolt Tower, and discover fairy-tale Štramberk nearby.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <img class="day-img" src="photos/5c.jpg" alt="Bolt Tower Ostrava" loading="lazy">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~2:30 PM, drive west to the Czech border</li>
+              <li>Arrive Ostrava ~5:00 PM, check into hotel</li>
+              <li>Evening at Dolní Vítkovice — a former steelworks turned cultural hub</li>
+              <li>Take the lift up Bolt Tower (77 m) for panoramic sunset views</li>
+              <li>Explore the industrial cathedral's walkways and exhibitions</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Bolt Tower restaurant with a view · Or at Stodolní Street clubs</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/5a.jpg" alt="Landek Park mining museum" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>9:00 AM — Landek Park Mining Museum</li>
+              <li>Ride the underground train 60 m below the surface through authentic mining shafts</li>
+              <li>Try on a miner's helmet and see the original equipment</li>
+              <li>Afternoon: Ostrava Zoo (one of Czechia's largest) or Water World Sareza</li>
+              <li>Evening: explore Stodolní Street — over 60 bars and pubs in one street</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Landek Park's restaurant · 🍽 Traditional Czech pub dinner</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/5b.jpg" alt="Štramberk Trúba" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>10:00 AM — Day trip to Štramberk (25 km, 30 min drive)</li>
+              <li>Climb the Trúba tower for views of the Beskydy Mountains</li>
+              <li>Explore the fairy-tale wooden houses and cobblestone streets</li>
+              <li>Buy Štramberské uši — a local gingerbread specialty</li>
+              <li>Alternative: Hukvaldy Castle ruins — the largest castle complex in Moravia</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Štramberk main square · 🍽 Beer tasting at Ostrava's brewpub</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>7:00 AM — Depart Ostrava</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Plenty of time for a proper breakfast before the day begins</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Meritum (modern, central) or Hotel Imperial (historical, elegant) — both well-located.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 6 ─── -->
+<!-- ═══ DEST 6: Tokaj ═══ -->
 <div class="dest" id="dest6">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/7.jpg" alt="Tokaj Wine Region" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/7.jpg" alt="Tokaj Wine Region" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">06</span>
-        <h3>Tokaj Wine Region (Hungary)</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">06</span><h3>Tokaj Wine Region (Hungary)</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~3.5 h</strong> · 200 km via Košice</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">UNESCO hills of sweet wine.</div>
-          Volcanic slopes, centuries-old cellars carved into rock, and the legendary Tokaji Aszú. A wine tour here is a journey through underground cathedrals of barrel-aged gold. Hungarian cuisine seals the deal.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive via Rzeszów &amp; Dukla Pass. Check into a cellar guesthouse. Evening tasting.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Tour 2–3 wineries (Disznókő, Oremus, Hétszőlő). Cellar tour + tasting. Lunch on Tokaj's square.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Sárospatak Castle or Zemplén Hills hike. Rustic csárda dinner with live music.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 6:00 → Kraków ~9:30. Buy wine Saturday instead.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Tokaj or Bordog és Kaland cellar guesthouse.</div>
+      <div class="why-box">
+        <div class="pull-quote">UNESCO hills of sweet wine.</div>
+        Volcanic slopes, centuries-old cellars carved into rock, and the legendary Tokaji Aszú. A wine tour here is a journey through underground cathedrals of barrel-aged gold. Hungarian cuisine seals the deal.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~12:00 PM, drive via Rzeszów and the scenic Dukla Pass</li>
+              <li>Cross into Slovakia, then Hungary at Kráľovský Chlmec</li>
+              <li>Arrive Tokaj ~3:30 PM, check into a wine cellar guesthouse</li>
+              <li>Introductory tasting at a family winery — learn the 6 types of Tokaj wine</li>
+              <li>Evening walk along the Bodrog riverbank</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Tokaj Vintage Restaurant — duck breast with Tokaj sauce</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/6b.jpg" alt="Tokaj wine cellars" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>10:00 AM — Tour Disznókő Winery (architectural design + wine tasting)</li>
+              <li>12:30 PM — Oremus Winery tasting in ancient cellars carved in volcanic tuff</li>
+              <li>3:00 PM — Hétszőlő Winery (the oldest estate, dating to 1502)</li>
+              <li>Walk through the vineyard terraces with views over the Tokaj basin</li>
+              <li>Buy bottles directly from each cellar — they're half supermarket price</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch on Tokaj's main square · 🍽 Dinner at Petrács Gyógy — Hungarian goulash and lángos</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/6a.jpg" alt="Sárospatak Castle" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>10:00 AM — Drive to Sárospatak (25 km), tour the Rákóczi Castle</li>
+              <li>Magnificent Renaissance fortress with a hand-dug well in the courtyard</li>
+              <li>Afternoon: hike the Zemplén Hills — gentle trails among volcanic peaks</li>
+              <li>Visit a small family cellar for a last tasting</li>
+              <li>Evening: rustic csárda dinner with live cimbalom music</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Sárospatak · 🍽 Csárda dinner with live folk music</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>6:00 AM — Depart Tokaj (buy wine on Saturday to avoid Sunday closures)</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Unpack your wine haul and relive the weekend with a bottle of Aszú</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Tokaj or Bordog és Kaland (wine cellar guesthouse) — authentic, unforgettable.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 7 ─── -->
+<!-- ═══ DEST 7: Vienna ═══ -->
 <div class="dest" id="dest7">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/8.jpg" alt="Vienna - Schönbrunn Palace" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/8.jpg" alt="Vienna - Schönbrunn Palace" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">07</span>
-        <h3>Vienna (Austria)</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">07</span><h3>Vienna (Austria)</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~4.5 h</strong> · 330 km via Brno</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Imperial elegance, summer energy.</div>
-          Schönbrunn, Hofburg, the Ringstraße — Vienna needs no introduction. But in June, it's also outdoor wine taverns, Prater park, and Klimt at the Belvedere. Worth every kilometer of the drive.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Early start → Vienna. Walk Ringstraße, Stephansdom. Heurigen dinner.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Schönbrunn Palace + gardens. Hofburg &amp; Sisi Museum. Prater &amp; Riesenrad.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Kunsthistorisches or Belvedere (Klimt). Or day trip to Wachau Valley.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 5:00 → Kraków ~9:30. Pack everything Saturday night.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel NH Wien or Pension Liechtenstein — book ahead for June.</div>
+      <div class="why-box">
+        <div class="pull-quote">Imperial elegance, summer energy.</div>
+        Schönbrunn, Hofburg, the Ringstraße — Vienna needs no introduction. In June, it's also outdoor wine taverns, Prater park, and Klimt at the Belvedere. Worth every kilometer of the drive.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~10:00 AM, motorway drive via Brno</li>
+              <li>Arrive Vienna ~2:30 PM, check into hotel</li>
+              <li>Walk the Ringstraße — see the State Opera, Parliament, and City Hall</li>
+              <li>Visit Stephansdom cathedral and climb the south tower</li>
+              <li>Evening: Heurigen wine tavern in Grinzing — local wine served in a garden</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at a Heurigen tavern — Wiener Schnitzel and Gemischter Satz wine</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/7a.jpg" alt="Hofburg Vienna" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>9:00 AM — Schönbrunn Palace tour: 40 rooms of imperial grandeur</li>
+              <li>Walk the Great Parterre gardens, visit the Gloriette for city views</li>
+              <li>2:00 PM — Hofburg Imperial Palace: Sisi Museum and Imperial Apartments</li>
+              <li>See the Spanish Riding School stables (Lipizzaner horses)</li>
+              <li>7:00 PM — Prater park: ride the iconic Riesenrad Ferris Wheel at sunset</li>
+            </ul>
+            <span class="meal-tag">🥪 Lunch at Café Central · 🍽 Dinner at Figlmüller — famous schnitzel</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/7b.jpg" alt="Prater Riesenrad" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>Choose your own adventure:</li>
+              <li>🎨 Kunsthistorisches Museum (Bruegel, Vermeer, Rembrandt) OR</li>
+              <li>🎨 Belvedere Gallery — Klimt's The Kiss and Schiele masterpieces</li>
+              <li>Alternatively: day trip to the Wachau Valley (Melk Abbey, Dürnstein ruins)</li>
+              <li>Evening: Naschmarkt food market for dinner</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Naschmarkt · 🍽 Final dinner at a rooftop bar</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>5:00 AM — Depart Vienna (pack the car on Saturday night!)</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Worth the early wake-up — Vienna never disappoints</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel NH Wien (good value) or Pension Liechtenstein (central). Book ahead for June!</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 8 ─── -->
+<!-- ═══ DEST 8: Low Tatras ═══ -->
 <div class="dest" id="dest8">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/9.jpg" alt="Low Tatras - Ďumbier" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/9.jpg" alt="Low Tatras - Ďumbier" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">08</span>
-        <h3>Low Tatras National Park (Slovakia)</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">08</span><h3>Low Tatras National Park (Slovakia)</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~3.5 h</strong> · 200 km via Poprad</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Slovakia's wildest range.</div>
-          The Low Tatras are rugged, uncrowded, and spectacular. Hike to Ďumbier peak for 360° ridge views, explore ice caves, and soak in thermal pools at the end of the day. True mountain escape.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Jasná or Liptovský Mikuláš. Walk the town, dinner by the Váh.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Ďumbier hike (1,843 m). Stunning ridge-line views. ~6h. Pack picnic.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Demänovská Ice Cave + Freedom Cave tours. Afternoon thermal pools.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 6:00 → Kraków ~9:30. Chairlift on Saturday instead.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Grand Jasná or Penzión Bystrina — at trailheads.</div>
+      <div class="why-box">
+        <div class="pull-quote">Slovakia's wildest range.</div>
+        The Low Tatras are rugged, uncrowded, and spectacular. Hike to Ďumbier peak for 360° ridge views, explore ice caves, and soak in thermal pools at the end of the day. True mountain escape.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~1:00 PM, drive south via Poprad</li>
+              <li>Arrive Jasná or Liptovský Mikuláš ~4:30 PM, check in</li>
+              <li>Walk around Liptovský Mikuláš — a charming Liptov town</li>
+              <li>See the Baroque square and the Synagogue cultural centre</li>
+              <li>Evening stroll along the Váh River</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Koliba Repiská — bryndzové halušky and local beer</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>6:30 AM — Early start, drive to trailhead at Trangoška</li>
+              <li>Hike to Ďumbier (1,843 m) — the highest peak of the Low Tatras</li>
+              <li>Steep climb rewards with the longest ridge-line views in Slovakia</li>
+              <li>~6 h round trip, including rest and lunch on the summit</li>
+              <li>Descend via the same ridge or the Chopok side</li>
+            </ul>
+            <span class="meal-tag">🥪 Pack a hearty picnic · 🍽 Dinner at Hotel Grand Jasná</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/8a.jpg" alt="Demänovská Ice Cave" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>9:00 AM — Tour Demänovská Ice Cave (guided, 1 h, 5°C inside)</li>
+              <li>10:30 AM — Second cave: Demänovská Cave of Freedom (different formations)</li>
+              <li>Afternoon: thermal pools in Liptovský Ján — natural hot springs</li>
+              <li>Alternatively: ride the chairlift on Jasná for panoramic views without hiking</li>
+              <li>Evening: sauna and relaxation at the hotel</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at a Liptovský Ján restaurant · 🍽 Grill night at Penzión Bystrina</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>6:00 AM — Depart Jasná</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>Legs will be tired but the ridge views will be worth every step</li>
+            </ul>
+            <span class="meal-tag">🥡 Breakfast on the road</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Grand Jasná or Penzión Bystrina — right at the mountain trailheads.</div>
     </div>
   </div>
 </div>
 
-<!-- ─── DESTINATION 9 ─── -->
+<!-- ═══ DEST 9: České Budějovice ═══ -->
 <div class="dest" id="dest9">
   <div class="dest-inner">
-    <div class="img-wrap">
-      <img src="photos/10.jpg" alt="Hluboká Castle near České Budějovice" loading="lazy">
-    </div>
+    <div class="hero-wrap"><img src="photos/10.jpg" alt="Hluboká Castle near České Budějovice" loading="lazy"></div>
     <div class="dest-body">
-      <div class="dest-header">
-        <span class="dest-number">09</span>
-        <h3>České Budějovice (Czech Republic)</h3>
-      </div>
+      <div class="dest-header"><span class="dest-number">09</span><h3>České Budějovice (Czech Republic)</h3></div>
       <div class="drive-info">🚗 Drive from Kraków: <strong>~4.5 h</strong> · 390 km via Brno</div>
-      <div class="dest-grid">
-        <div class="why-box">
-          <div class="pull-quote">Beer, castles, and South Bohemian charm.</div>
-          The home of Budvar beer, a vast Renaissance square, and a fairy-tale castle just minutes away. Český Krumlov — UNESCO-listed — is a 30-minute drive down the Vltava valley.
-        </div>
-        <table class="plan-table">
-          <tr><th>Day</th><th>Plan</th></tr>
-          <tr><td class="day-label">Thu 18 Jun</td><td>Drive → České Budějovice. Budvar brewery tour + tasting. Dinner at Masné Krámy.</td></tr>
-          <tr><td class="day-label">Fri 19 Jun</td><td>Český Krumlov day trip: castle, Vltava rafting, Old Town. Back for beer.</td></tr>
-          <tr><td class="day-label">Sat 20 Jun</td><td>Hluboká Castle. Třeboň fish ponds cycling or Novohradské hike.</td></tr>
-          <tr><td class="day-label">Sun 21 Jun</td><td>Depart 5:00 → Kraków ~9:30 via Brno. Quick breakfast before leaving.</td></tr>
-        </table>
-        <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Zvon (on the square) or Penzion U Tří sedláků.</div>
+      <div class="why-box">
+        <div class="pull-quote">Beer, castles, and South Bohemian charm.</div>
+        The home of Budvar beer, a vast Renaissance square, and a fairy-tale castle minutes away. Český Krumlov — UNESCO-listed — is a 30-minute drive down the Vltava valley.
       </div>
+      <div class="days-grid">
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Thursday 18 June</h4>
+            <ul>
+              <li>Depart Kraków ~10:00 AM, motorway via Brno</li>
+              <li>Arrive České Budějovice ~2:30 PM, check in</li>
+              <li>4:00 PM — Budvar brewery tour: see the bottling hall, cellars, and fermentation tanks</li>
+              <li>Taste unpasteurised Budvar directly from the tank</li>
+              <li>Walk the main square — the largest in Czechia (133 × 133 m)</li>
+            </ul>
+            <span class="meal-tag">🍽 Dinner at Masné Krámy — Budvar restaurant with hearty Czech cuisine</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/9c.jpg" alt="Český Krumlov castle" loading="lazy">
+          <div class="day-card-body">
+            <h4>Friday 19 June</h4>
+            <ul>
+              <li>9:00 AM — Drive to Český Krumlov (30 km)</li>
+              <li>Tour the castle: one of the largest in Central Europe</li>
+              <li>Walk through the old town — a UNESCO World Heritage site</li>
+              <li>Optional: raft the Vltava river through the town (tame rapids, 2 h)</li>
+              <li>Climb the castle tower for the iconic view of the red rooftops</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at a Krumlov riverside restaurant · 🍽 Back in ČB for evening beer</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <img class="day-img" src="photos/9b.jpg" alt="Třeboň fish ponds" loading="lazy">
+          <div class="day-card-body">
+            <h4>Saturday 20 June</h4>
+            <ul>
+              <li>10:00 AM — Visit Hluboká Castle (10 min from ČB)</li>
+              <li>A white fairy-tale castle inspired by Windsor — stunning interiors and gardens</li>
+              <li>Afternoon: drive to Třeboň (25 km) — historic town of fish ponds</li>
+              <li>Rent bikes and cycle around the Renaissance fish ponds</li>
+              <li>Sample local carp and Třeboň's medicinal herbs</li>
+            </ul>
+            <span class="meal-tag">🍽 Lunch at Hluboká or Třeboň · 🍽 Farewell dinner at ČB's main square</span>
+          </div>
+        </div>
+        <div class="day-card">
+          <div class="day-card-body">
+            <h4>Sunday 21 June</h4>
+            <ul>
+              <li>5:00 AM — Depart České Budějovice</li>
+              <li>9:30 AM — Arrive Kraków</li>
+              <li>A long drive home but the fairy-tale memories make it worthwhile</li>
+            </ul>
+            <span class="meal-tag">🥡 Quick breakfast before leaving</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleep-box">🛌 <strong>Where to sleep:</strong> Hotel Zvon (directly on the main square) or Penzion U Tří sedláků — central and affordable.</div>
     </div>
   </div>
 </div>
@@ -793,7 +1035,6 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
   }, { threshold: 0.1 });
   document.querySelectorAll('.dest').forEach(d => observer.observe(d));
-
   document.querySelectorAll('.nav a').forEach(a => {
     a.addEventListener('click', () => {
       document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
@@ -801,6 +1042,5 @@
     });
   });
 </script>
-
 </body>
 </html>
