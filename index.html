@@ -5,211 +5,316 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Road Trip from Kraków – June 18–21, 2026</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
   :root {
-    --purple: #4A235A;
-    --accent: #C0392B;
-    --teal: #0E6655;
-    --gray: #2C3E50;
-    --light-purple: #F5EEF8;
-    --light-accent: #FADBD8;
-    --light-teal: #E8F8F5;
-    --dark-bg: #1B2631;
-    --gold: #B7950B;
+    --purple: #5B2A8C;
+    --accent: #D94A3D;
+    --teal: #0D7A6E;
+    --gold: #D4A017;
+    --dark: #1B1F2B;
+    --light-bg: #F4F2F0;
+    --card-bg: #FFFFFF;
+    --text: #2D2D3A;
+    --text-light: #6B7280;
+    --shadow: 0 8px 30px rgba(0,0,0,0.08);
+    --radius: 16px;
   }
+  html { scroll-behavior: smooth; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--gray);
-    background: #f5f5f5;
-    line-height: 1.5;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--light-bg);
+    line-height: 1.6;
   }
   .cover {
-    background: var(--dark-bg);
+    background: linear-gradient(135deg, var(--dark) 0%, #2D1B4E 40%, #1B2F3B 100%);
     color: #fff;
     text-align: center;
-    padding: 80px 20px 60px;
+    padding: 100px 24px 70px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
   }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(91,42,140,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(13,122,110,0.1) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(2%, -2%) rotate(1deg); }
+    66% { transform: translate(-1%, 1%) rotate(-1deg); }
+  }
+  .cover > * { position: relative; z-index: 1; }
   .cover h1 {
-    font-size: clamp(2rem, 6vw, 4rem);
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .cover h2 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 400;
-    color: #ddd;
-    margin-bottom: 20px;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
   }
   .cover .date {
-    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
     color: var(--gold);
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+    letter-spacing: 0.08em;
   }
   .cover .intro {
-    max-width: 600px;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #ccc;
+    max-width: 620px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
   }
   .cover .note {
-    margin-top: 24px;
-    padding: 12px 24px;
-    background: rgba(192,57,43,0.15);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    color: #f5c6b8;
+    margin-top: 28px;
+    padding: 14px 28px;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 12px;
+    color: var(--gold);
     font-weight: 600;
-    font-size: 1rem;
-    max-width: 500px;
+    font-size: 0.95rem;
+    max-width: 540px;
+    backdrop-filter: blur(8px);
+  }
+  .cover .scroll-hint {
+    margin-top: 50px;
+    opacity: 0.5;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
   }
   .nav-bar {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--dark-bg);
-    padding: 8px 12px;
+    background: rgba(27,31,43,0.92);
+    backdrop-filter: blur(12px);
+    padding: 10px 16px;
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
   .nav-bar a {
     display: inline-block;
-    color: #ddd;
+    color: rgba(255,255,255,0.6);
     text-decoration: none;
-    padding: 6px 14px;
+    padding: 6px 16px;
     margin: 2px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    transition: all 0.2s;
+    border-radius: 24px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.25s;
   }
   .nav-bar a:hover {
-    background: var(--purple);
+    background: rgba(91,42,140,0.4);
     color: #fff;
   }
   .container {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 0 16px;
-  }
-  .dest {
-    background: #fff;
-    border-radius: 12px;
-    margin: 24px 0;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
-  .dest img {
-    width: 100%;
-    height: auto;
-    max-height: 420px;
-    object-fit: cover;
-    display: block;
-  }
-  .dest-body {
-    padding: 24px;
-  }
-  .dest h3 {
-    font-size: 1.5rem;
-    color: var(--purple);
-    margin-bottom: 4px;
-  }
-  .drive-info {
-    font-size: 1rem;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .why-box {
-    background: var(--light-purple);
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    font-size: 0.95rem;
-  }
-  .plan-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 12px;
-    font-size: 0.9rem;
-  }
-  .plan-table th {
-    background: var(--purple);
-    color: #fff;
-    padding: 8px 10px;
-    text-align: left;
-    font-size: 0.85rem;
-  }
-  .plan-table td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #e0e0e0;
-    vertical-align: top;
-  }
-  .plan-table tr:nth-child(even) td {
-    background: var(--light-teal);
-  }
-  .plan-table .day-label {
-    font-weight: 700;
-    color: var(--teal);
-    white-space: nowrap;
-    width: 110px;
-  }
-  .sleep-box {
-    background: var(--light-accent);
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--teal);
+    padding: 0 20px;
   }
   .toc-section {
-    background: #fff;
-    border-radius: 12px;
-    padding: 32px;
-    margin: 24px 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin: 40px 0;
+    box-shadow: var(--shadow);
   }
   .toc-section h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--purple);
-    font-size: 1.5rem;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
   }
   .toc-list {
     list-style: none;
   }
   .toc-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
   }
   .toc-list li:last-child { border: none; }
   .toc-list a {
     text-decoration: none;
-    color: var(--gray);
+    color: var(--text);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: all 0.2s;
   }
-  .toc-list a:hover { color: var(--purple); }
+  .toc-list a:hover {
+    background: var(--light-bg);
+    color: var(--purple);
+  }
+  .toc-list .dest-name {
+    font-weight: 500;
+  }
   .toc-list .drive-tag {
     font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 400;
+    background: var(--light-bg);
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .dest {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    margin: 36px 0;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .dest:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+  .dest .img-wrap {
+    position: relative;
+    overflow: hidden;
+    max-height: 440px;
+  }
+  .dest .img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .dest:hover .img-wrap img {
+    transform: scale(1.03);
+  }
+  .dest .img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    pointer-events: none;
+  }
+  .dest-body {
+    padding: 28px 32px;
+  }
+  .dest h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .drive-info {
+    font-size: 0.95rem;
     color: var(--accent);
-    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .why-box {
+    background: linear-gradient(135deg, #F8F4FF 0%, #F0F7F6 100%);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--purple);
+  }
+  .why-box strong {
+    color: var(--purple);
+  }
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 0.92rem;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .plan-table th {
+    background: var(--purple);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .plan-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .plan-table tr:last-child td {
+    border-bottom: none;
+  }
+  .plan-table tr:nth-child(even) td {
+    background: #F8FAF9;
+  }
+  .plan-table .day-label {
+    font-weight: 600;
+    color: var(--teal);
+    white-space: nowrap;
+    width: 110px;
+  }
+  .sleep-box {
+    background: linear-gradient(135deg, #FFF5F3 0%, #FFF8E7 100%);
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--teal);
+    border-left: 4px solid var(--accent);
   }
   footer {
     text-align: center;
-    padding: 32px 16px;
-    color: #888;
+    padding: 40px 20px;
+    color: var(--text-light);
     font-size: 0.85rem;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
   }
   @media (max-width: 600px) {
-    .dest-body { padding: 16px; }
-    .plan-table { font-size: 0.8rem; }
+    .cover { padding: 60px 16px 40px; }
+    .dest-body { padding: 20px; }
+    .plan-table { font-size: 0.82rem; }
     .plan-table .day-label { width: 80px; }
+    .toc-section { padding: 24px 20px; }
+    .dest h3 { font-size: 1.3rem; }
   }
 </style>
 </head>
@@ -217,30 +322,29 @@
 
 <div class="cover" id="top">
   <h1>ROAD TRIP PROPOSALS</h1>
-  <h2>from <span style="color:#C0392B">Kraków</span> for a Group of 4</h2>
+  <h2>from <span style="color:#D94A3D">Kraków</span> for a Group of 4</h2>
   <div class="date">June 18 — June 21, 2026</div>
   <div class="intro">
-    Ten hand-picked destinations — from mountain adventures and lake retreats
+    Nine hand-picked destinations — from mountain adventures and lake retreats
     to city breaks and hidden gems — all within 4–5 hours from Kraków.
     Each proposal includes a day-by-day plan tailored for Thu 18 – Sun 21 June.
     Perfect for a couple and two friends who love exploring.
   </div>
   <div class="note">You need to be back in Kraków by ~10 AM on Sunday 21 June. Departure times are adjusted accordingly.</div>
-  <div style="margin-top:40px; opacity:0.7;">Let the adventure begin!</div>
+  <div class="scroll-hint">Scroll to explore</div>
 </div>
 
 <div class="nav-bar" id="nav">
   <a href="#toc">Contents</a>
-  <a href="#dest1">1. Solina & Bieszczady</a>
-  <a href="#dest2">2. Szczawnica & Pieniny</a>
-  <a href="#dest3">3. Dedinky & Slovak Paradise</a>
-  <a href="#dest4">4. Bielsko-Biała & Beskid Śląski</a>
-  <a href="#dest5">5. Karpacz & Góry Stołowe</a>
-  <a href="#dest6">6. Ostrava</a>
-  <a href="#dest7">7. Tokaj</a>
-  <a href="#dest8">8. Vienna</a>
-  <a href="#dest9">9. Low Tatras</a>
-  <a href="#dest10">10. České Budějovice</a>
+  <a href="#dest1">1. Solina &amp; Bieszczady</a>
+  <a href="#dest2">2. Szczawnica &amp; Pieniny</a>
+  <a href="#dest3">3. Dedinky &amp; Slovak Paradise</a>
+  <a href="#dest4">4. Karpacz &amp; Góry Stołowe</a>
+  <a href="#dest5">5. Ostrava</a>
+  <a href="#dest6">6. Tokaj</a>
+  <a href="#dest7">7. Vienna</a>
+  <a href="#dest8">8. Low Tatras</a>
+  <a href="#dest9">9. České Budějovice</a>
 </div>
 
 <div class="container">
@@ -248,25 +352,27 @@
 <div class="toc-section" id="toc">
   <h3>Contents</h3>
   <ul class="toc-list">
-    <li><a href="#dest1"><span>1. Solina &amp; Bieszczady Mountains</span> <span class="drive-tag">~3.5 h</span></a></li>
-    <li><a href="#dest2"><span>2. Szczawnica &amp; Pieniny Mountains</span> <span class="drive-tag">~1.5 h</span></a></li>
-    <li><a href="#dest3"><span>3. Dedinky &amp; Slovak Paradise</span> <span class="drive-tag">~2 h</span></a></li>
-    <li><a href="#dest4"><span>4. Bielsko-Biała &amp; Beskid Śląski</span> <span class="drive-tag">~1.5 h</span></a></li>
-    <li><a href="#dest5"><span>5. Karpacz &amp; Góry Stołowe</span> <span class="drive-tag">~4 h</span></a></li>
-    <li><a href="#dest6"><span>6. Ostrava (Czech Republic)</span> <span class="drive-tag">~2.5 h</span></a></li>
-    <li><a href="#dest7"><span>7. Tokaj Wine Region (Hungary)</span> <span class="drive-tag">~3.5 h</span></a></li>
-    <li><a href="#dest8"><span>8. Vienna (Austria)</span> <span class="drive-tag">~4.5 h</span></a></li>
-    <li><a href="#dest9"><span>9. Low Tatras National Park (Slovakia)</span> <span class="drive-tag">~3.5 h</span></a></li>
-    <li><a href="#dest10"><span>10. České Budějovice (Czech Republic)</span> <span class="drive-tag">~4.5 h</span></a></li>
+    <li><a href="#dest1"><span class="dest-name">1. Solina &amp; Bieszczady Mountains</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest2"><span class="dest-name">2. Szczawnica &amp; Pieniny Mountains</span> <span class="drive-tag">~1.5 h</span></a></li>
+    <li><a href="#dest3"><span class="dest-name">3. Dedinky &amp; Slovak Paradise</span> <span class="drive-tag">~2 h</span></a></li>
+    <li><a href="#dest4"><span class="dest-name">4. Karpacz &amp; Góry Stołowe</span> <span class="drive-tag">~4 h</span></a></li>
+    <li><a href="#dest5"><span class="dest-name">5. Ostrava (Czech Republic)</span> <span class="drive-tag">~2.5 h</span></a></li>
+    <li><a href="#dest6"><span class="dest-name">6. Tokaj Wine Region (Hungary)</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest7"><span class="dest-name">7. Vienna (Austria)</span> <span class="drive-tag">~4.5 h</span></a></li>
+    <li><a href="#dest8"><span class="dest-name">8. Low Tatras National Park (Slovakia)</span> <span class="drive-tag">~3.5 h</span></a></li>
+    <li><a href="#dest9"><span class="dest-name">9. České Budějovice (Czech Republic)</span> <span class="drive-tag">~4.5 h</span></a></li>
   </ul>
 </div>
 
 <!-- Destination 1 -->
 <div class="dest" id="dest1">
-  <img src="photos/1.jpg" alt="Solina Lake" loading="lazy">
+  <div class="img-wrap">
+    <img src="photos/1.jpg" alt="Solina Lake" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
     <h3>1. Solina &amp; Bieszczady Mountains</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 180 km</div>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h &middot; 180 km</div>
     <div class="why-box"><strong>Why this destination?</strong> Poland's most beautiful mountain lake surrounded by wild Bieszczady hills. Perfect for a group: boat trips, hiking, campfires, and stunning sunsets over the lake.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -281,10 +387,13 @@
 
 <!-- Destination 2 -->
 <div class="dest" id="dest2">
-  <img src="photos/2.jpg" alt="Dunajec River Gorge" loading="lazy">
+  <div class="img-wrap">
+    <img src="photos/2.jpg" alt="Dunajec River Gorge" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
     <h3>2. Szczawnica &amp; Pieniny Mountains</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~1.5 h | 100 km</div>
+    <div class="drive-info">🚗 Drive from Kraków: ~1.5 h &middot; 100 km</div>
     <div class="why-box"><strong>Why this destination?</strong> The closest mountain escape from Kraków. Famous for the Dunajec River Gorge raft trip — a must-do! Charming spa town with great food.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -299,10 +408,13 @@
 
 <!-- Destination 3 -->
 <div class="dest" id="dest3">
-  <img src="photos/3.jpg" alt="Slovak Paradise - Suchá Belá" loading="lazy">
+  <div class="img-wrap">
+    <img src="photos/3.jpg" alt="Slovak Paradise - Suchá Belá" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
     <h3>3. Dedinky &amp; Slovak Paradise</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~2 h | 130 km</div>
+    <div class="drive-info">🚗 Drive from Kraków: ~2 h &middot; 130 km</div>
     <div class="why-box"><strong>Why this destination?</strong> A hidden Slovak gem. Dedinky village sits by a small lake at the foot of rocky canyons. Ladders, waterfalls, and gorges make Slovak Paradise a thrilling adventure.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -315,30 +427,15 @@
   </div>
 </div>
 
-<!-- Destination 4 -->
+<!-- Destination 4 (was 5) -->
 <div class="dest" id="dest4">
-  <img src="photos/4.jpg" alt="Bielsko-Biała Old Town" loading="lazy">
-  <div class="dest-body">
-    <h3>4. Bielsko-Biała &amp; Beskid Śląski</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~1.5 h | 80 km</div>
-    <div class="why-box"><strong>Why this destination?</strong> A beautiful old town with Italian-style square and easy access to Szyndzielnia and Skrzyczne peaks. Cable cars, hiking trails, and excellent Silesian cuisine.</div>
-    <table class="plan-table">
-      <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
-      <tr><td class="day-label">Thu 18 Jun</td><td>Drive to Bielsko-Biała, check in. Walk the Old Town and visit the Bielsko Castle. Dinner at Staropolanka restaurant.</td></tr>
-      <tr><td class="day-label">Fri 19 Jun</td><td>Cable car up Szyndzielnia, hike the ridge to Klimczok. Panoramic views of the Tatras on a clear day.</td></tr>
-      <tr><td class="day-label">Sat 20 Jun</td><td>Visit Żywiec Brewery (tour + tasting) or hike Skrzyczne — the highest peak in Beskid Śląski. Evening in the city.</td></tr>
-      <tr><td class="day-label">Sun 21 Jun</td><td>Depart Bielsko at 8:00 AM → arrive Kraków ~9:30 AM (1.5h drive). Quick morning coffee before leaving.</td></tr>
-    </table>
-    <div class="sleep-box">🛌 Where to sleep: Hotel Szyndzielnia (on the mountain) or Hotel President in city center.</div>
+  <div class="img-wrap">
+    <img src="photos/5.jpg" alt="Karpacz - Wang Church" loading="lazy">
+    <div class="img-overlay"></div>
   </div>
-</div>
-
-<!-- Destination 5 -->
-<div class="dest" id="dest5">
-  <img src="photos/5.jpg" alt="Karpacz - Wang Church" loading="lazy">
   <div class="dest-body">
-    <h3>5. Karpacz &amp; Góry Stołowe</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~4 h | 320 km</div>
+    <h3>4. Karpacz &amp; Góry Stołowe</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4 h &middot; 320 km</div>
     <div class="why-box"><strong>Why this destination?</strong> A longer drive but rewards with the otherworldly rock formations of Góry Stołowe and the charm of Karpacz. Śnieżka peak and the Wang Church are highlights.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -351,12 +448,15 @@
   </div>
 </div>
 
-<!-- Destination 6 -->
-<div class="dest" id="dest6">
-  <img src="photos/6.jpg" alt="Ostrava - Dolní Vítkovice" loading="lazy">
+<!-- Destination 5 (was 6) -->
+<div class="dest" id="dest5">
+  <div class="img-wrap">
+    <img src="photos/6.jpg" alt="Ostrava - Dolní Vítkovice" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
-    <h3>6. Ostrava (Czech Republic)</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~2.5 h | 180 km</div>
+    <h3>5. Ostrava (Czech Republic)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~2.5 h &middot; 180 km</div>
     <div class="why-box"><strong>Why this destination?</strong> An industrial city turned hip destination. Metallurgy museums, great food, technical attractions (Landek Park, Bolt Tower). Going abroad without going far.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -369,12 +469,15 @@
   </div>
 </div>
 
-<!-- Destination 7 -->
-<div class="dest" id="dest7">
-  <img src="photos/7.jpg" alt="Tokaj Wine Region" loading="lazy">
+<!-- Destination 6 (was 7) -->
+<div class="dest" id="dest6">
+  <div class="img-wrap">
+    <img src="photos/7.jpg" alt="Tokaj Wine Region" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
-    <h3>7. Tokaj Wine Region (Hungary)</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 200 km via Košice</div>
+    <h3>6. Tokaj Wine Region (Hungary)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h &middot; 200 km via Košice</div>
     <div class="why-box"><strong>Why this destination?</strong> A UNESCO World Heritage wine region with historic cellars carved into volcanic hills. Perfect for a group: wine tastings, castle ruins, and incredible Hungarian cuisine.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -387,12 +490,15 @@
   </div>
 </div>
 
-<!-- Destination 8 -->
-<div class="dest" id="dest8">
-  <img src="photos/8.jpg" alt="Vienna - Schönbrunn Palace" loading="lazy">
+<!-- Destination 7 (was 8) -->
+<div class="dest" id="dest7">
+  <div class="img-wrap">
+    <img src="photos/8.jpg" alt="Vienna - Schönbrunn Palace" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
-    <h3>8. Vienna (Austria)</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h | 330 km via Brno</div>
+    <h3>7. Vienna (Austria)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h &middot; 330 km via Brno</div>
     <div class="why-box"><strong>Why this destination?</strong> Imperial grandeur, world-class museums, coffeehouse culture, and a buzzing summer scene. The ultimate classy city break — and the drive is worth every kilometer.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -405,12 +511,15 @@
   </div>
 </div>
 
-<!-- Destination 9 -->
-<div class="dest" id="dest9">
-  <img src="photos/9.jpg" alt="Low Tatras - Ďumbier" loading="lazy">
+<!-- Destination 8 (was 9) -->
+<div class="dest" id="dest8">
+  <div class="img-wrap">
+    <img src="photos/9.jpg" alt="Low Tatras - Ďumbier" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
-    <h3>9. Low Tatras National Park (Slovakia)</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h | 200 km via Poprad</div>
+    <h3>8. Low Tatras National Park (Slovakia)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~3.5 h &middot; 200 km via Poprad</div>
     <div class="why-box"><strong>Why this destination?</strong> Slovakia's largest national park! Wild, rugged, and less crowded than the High Tatras. Hiking to Ďumbier peak, thermal pools, ice caves, and the legendary Chata generála lodge.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -423,12 +532,15 @@
   </div>
 </div>
 
-<!-- Destination 10 -->
-<div class="dest" id="dest10">
-  <img src="photos/10.jpg" alt="Hluboká Castle near České Budějovice" loading="lazy">
+<!-- Destination 9 (was 10) -->
+<div class="dest" id="dest9">
+  <div class="img-wrap">
+    <img src="photos/10.jpg" alt="Hluboká Castle near České Budějovice" loading="lazy">
+    <div class="img-overlay"></div>
+  </div>
   <div class="dest-body">
-    <h3>10. České Budějovice (Czech Republic)</h3>
-    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h | 390 km via Brno</div>
+    <h3>9. České Budějovice (Czech Republic)</h3>
+    <div class="drive-info">🚗 Drive from Kraków: ~4.5 h &middot; 390 km via Brno</div>
     <div class="why-box"><strong>Why this destination?</strong> The heart of South Bohemia, home of Budweiser Budvar beer, a stunning main square (the largest in Czechia), and a gateway to Český Krumlov and Hluboká Castle.</div>
     <table class="plan-table">
       <tr><th>Day</th><th>Activities &amp; Meals</th></tr>
@@ -444,7 +556,7 @@
 </div>
 
 <footer>
-  <p>Road Trip Proposals • Kraków • June 18–21, 2026</p>
+  <p>Road Trip Proposals &bull; Kraków &bull; June 18–21, 2026</p>
 </footer>
 
 </body>
